@@ -11,7 +11,10 @@ namespace ElevatorManager
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Gilmond HQ!");
-
+            int floors = Setup.Floors();
+            int lifts = Setup.Lifts();
+            Console.WriteLine("There are {0} floors and {1} lifts!",floors, lifts);
+            Console.ReadLine();
         }
     }
 }

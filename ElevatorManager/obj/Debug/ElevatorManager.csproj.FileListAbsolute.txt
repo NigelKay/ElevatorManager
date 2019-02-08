@@ -1,0 +1,7 @@
+C:\Users\Nigel\Desktop\ElevatorManager\ElevatorManager\bin\Debug\ElevatorManager.exe.config
+C:\Users\Nigel\Desktop\ElevatorManager\ElevatorManager\bin\Debug\ElevatorManager.exe
+C:\Users\Nigel\Desktop\ElevatorManager\ElevatorManager\bin\Debug\ElevatorManager.pdb
+C:\Users\Nigel\Desktop\ElevatorManager\ElevatorManager\obj\Debug\ElevatorManager.csprojAssemblyReference.cache
+C:\Users\Nigel\Desktop\ElevatorManager\ElevatorManager\obj\Debug\ElevatorManager.csproj.CoreCompileInputs.cache
+C:\Users\Nigel\Desktop\ElevatorManager\ElevatorManager\obj\Debug\ElevatorManager.exe
+C:\Users\Nigel\Desktop\ElevatorManager\ElevatorManager\obj\Debug\ElevatorManager.pdb
