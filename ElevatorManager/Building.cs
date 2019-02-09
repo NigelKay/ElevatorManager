@@ -8,6 +8,15 @@ namespace ElevatorManager
 {
     class Building
     {
+        public int TotalFloors { get; set; }
+        public int TotalLifts { get; set; }
 
+        public Building(int totalFloors, int totalLifts)
+        {
+            this.TotalFloors = totalFloors;
+            this.TotalLifts = totalLifts;
+        }
     }
+
+    
 }
