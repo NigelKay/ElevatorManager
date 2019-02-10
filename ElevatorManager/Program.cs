@@ -8,13 +8,21 @@ namespace ElevatorManager
 {
     class Program
     {
+
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Gilmond HQ!");
             int floors = Setup.Floors();
             int lifts = Setup.Lifts();
-            Console.WriteLine("There are {0} floors and {1} lifts!",floors, lifts);
+            Console.WriteLine();
+
+            String[][] buildingStructure = new string[floors][];
+            Building building = new Building(floors, lifts);
+            buildingStructure = building.Construct(floors, lifts);
+            building.Display(buildingStructure);
+
             Console.ReadLine();
+
         }
     }
 }
