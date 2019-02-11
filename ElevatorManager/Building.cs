@@ -43,7 +43,5 @@ namespace ElevatorManager
                 Console.Write(System.Environment.NewLine);
             }
         }
-
-
-    } 
+    }
 }
