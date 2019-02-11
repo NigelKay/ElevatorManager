@@ -19,33 +19,36 @@ namespace ElevatorManager
             //Initialise Building
             String[][] buildingStructure = new string[floors][];
             Building building = new Building(floors, lifts);
-            buildingStructure = building.Construct(floors, lifts);
+            buildingStructure = building.Construct(floors, lifts);         
 
-            buildingStructure[0][0] = "[*] ";
-            building.Display(buildingStructure);
-            /* POSITION TESTING CODE
-            Console.Write("Floor: ");
-            int newcfloor = int.Parse(Console.ReadLine());
-            Console.Write("Lift: ");
-            int newclift = int.Parse(Console.ReadLine());
-            buildingStructure[floors - newcfloor][newclift-1] = "[*] ";
-            Console.Clear();
-            building.Display(buildingStructure);
-            */
-
-            //create all lifts
+            //create list of Lift instances
             List<Lift> allLifts = Lift.AllLiftsGenerator(lifts);
+            buildingStructure = Lift.LinkLifts(allLifts, buildingStructure, lifts);
+            building.Display(buildingStructure);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             //linq to access
             int directionof1 =
             (from a in allLifts
              where a.ID == 1
-             select a.Direction).First();
+             select a.CurrentFloor).First();
 
             int directionof2 =
             (from a in allLifts
              where a.ID == 2
-             select a.Direction).First();
+             select a.CurrentFloor).First();
 
             Console.WriteLine(directionof1);
             Console.WriteLine(directionof2);
