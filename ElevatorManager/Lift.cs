@@ -24,20 +24,22 @@ namespace ElevatorManager
             this.MaxWeightKG = maxWeightKG;
         }*/
 
-        public static List<Lift> AllLiftsGenerator(int lifts)
+        public static List<Lift> AllLiftsGenerator(int lifts, int floors)
         {
+            //Generate list of Lift instances and assigns values
             Random rnd = new Random();
             List<Lift> allLifts = new List<Lift>();
             for (int i = 0; i < lifts; i++)
             {
-                //TODO: Add fucntionality to prevent down on first or up on last
-                allLifts.Add(new Lift {ID = i, Active = true, CurrentFloor = rnd.Next(0,lifts+1), Direction = rnd.Next(0, 2), MaxWeightKG = 700});
+                int instanceCurrentFloor = rnd.Next(0, floors);
+                allLifts.Add(new Lift {ID = i, Active = true, CurrentFloor = instanceCurrentFloor, Direction = Lift.DirectionSelector(instanceCurrentFloor, floors), MaxWeightKG = 700});
             }
             return allLifts;
         }
 
-        public static String[][] LinkLifts(List<Lift> allLifts, String[][] buildingStructure, int lifts)
+        public static String[][] LinkLifts(List<Lift> allLifts, String[][] buildingStructure, int lifts, int floors)
         {
+            //Displays directions of lifts
             for (int i = 0; i < lifts; i++)
             {
                 int floor =
@@ -60,6 +62,26 @@ namespace ElevatorManager
                 }
             }
             return buildingStructure;
+        }
+
+        public static int DirectionSelector(int currentFloor, int floors)
+        {
+            //Ensure lifts do not go through the ceiling/floor
+            Random rnd = new Random();
+            int direction = 0;
+            if (currentFloor == 0)
+            {
+                direction = 1;
+            }
+            else if (currentFloor == floors)
+            {
+                direction = 0;
+            }
+            else
+            {
+                direction = rnd.Next(0, 2);
+            }
+            return direction;
         }
     }
 }

@@ -18,8 +18,9 @@ namespace ElevatorManager
             this.TotalLifts = totalLifts;
         }
 
-        public String[][] Construct(int floors, int lifts)
+        public static String[][] Construct(int floors, int lifts)
         {
+            //Builds the building based on user input
             String[][] result = new String[floors][];
             for (int x = 0; x < floors; x++)
             {
@@ -32,16 +33,32 @@ namespace ElevatorManager
             return result;
         }
 
-        public void Display(String[][] buildingStructure)
+        public static void Display(String[][] buildingStructure, int floors, int lifts)
         {
-            foreach (String[] array in buildingStructure)
+            //reverse print floors to resemble building
+            for(int x = floors-1; x >= 0; x--)
+            {
+                int itCount = 0;
+                for (int y = 0; y < lifts; y++)
+                {
+                    itCount++;
+                    Console.Write(buildingStructure[x][y]);
+                    if (itCount % lifts == 0)
+                    {
+                        Console.WriteLine();
+                    }
+                }
+            }
+
+            //Displays the building on Console
+            /*foreach (String[] array in buildingStructure)
             {
                 foreach (String item in array)
                 {
                     Console.Write(item);
                 }
                 Console.Write(System.Environment.NewLine);
-            }
+            }*/
         }
     }
 }
