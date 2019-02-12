@@ -23,13 +23,14 @@ namespace ElevatorManager
             List<Lift> allLifts = new List<Lift>();
             for (int i = 0; i < lifts; i++)
             {
-                int instanceCurrentFloor = rnd.Next(0, floors);
+                int instanceMaxFloor = Utilities.MaxFloorSelector(i, floors, lifts);
+                int instanceCurrentFloor = rnd.Next(0, instanceMaxFloor);
                 allLifts.Add(new Lift {
                     ID = i,
                     Active = true,
                     CurrentFloor = instanceCurrentFloor,
-                    Direction = instanceCurrentFloor == 0 ? 1 : instanceCurrentFloor == floors-1 ? 0 : rnd.Next(0, 2),
-                    MaxFloor = floors,
+                    Direction = instanceCurrentFloor == 0 ? 1 : instanceCurrentFloor == instanceMaxFloor-1 ? 0 : rnd.Next(0, 2),
+                    MaxFloor = instanceMaxFloor,
                     MaxWeightKG = 700
                 });
             }

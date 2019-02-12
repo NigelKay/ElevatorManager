@@ -37,5 +37,17 @@ namespace ElevatorManager
             }
             return choice;
         }
+
+        public static int MaxFloorSelector(int liftInstance, int totalFloors, int totalLifts)
+        {
+            if (totalLifts > 2 && totalFloors > 3 && liftInstance == (totalLifts - 1))
+            {
+                return totalFloors - 3;               
+            }
+            else
+            {
+                return totalFloors;
+            }
+        }
     }
 }
