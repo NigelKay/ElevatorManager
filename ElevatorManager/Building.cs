@@ -50,15 +50,7 @@ namespace ElevatorManager
                 }
             }
 
-            //Displays the building on Console
-            /*foreach (String[] array in buildingStructure)
-            {
-                foreach (String item in array)
-                {
-                    Console.Write(item);
-                }
-                Console.Write(System.Environment.NewLine);
-            }*/
+
         }
     }
 }

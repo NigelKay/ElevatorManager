@@ -12,19 +12,11 @@ namespace ElevatorManager
         public bool Active { get; set; }
         public int CurrentFloor { get; set; }
         public int Direction { get; set; }
+        public int MaxFloor { get; set; }
         public int MaxWeightKG = 700;
 
-        //INIT
-        /*public Lift (int id, bool active, int currentFloor, int direction, int maxWeightKG)
-        {
-            this.ID = id;
-            this.Active = active;
-            this.CurrentFloor = currentFloor;
-            this.Direction = direction;
-            this.MaxWeightKG = maxWeightKG;
-        }*/
 
-        public static List<Lift> AllLiftsGenerator(int lifts, int floors)
+        public static List<Lift> AllLiftsGenerator(int floors, int lifts)
         {
             //Generate list of Lift instances and assigns values
             Random rnd = new Random();
@@ -32,12 +24,21 @@ namespace ElevatorManager
             for (int i = 0; i < lifts; i++)
             {
                 int instanceCurrentFloor = rnd.Next(0, floors);
-                allLifts.Add(new Lift {ID = i, Active = true, CurrentFloor = instanceCurrentFloor, Direction = Lift.DirectionSelector(instanceCurrentFloor, floors), MaxWeightKG = 700});
+                allLifts.Add(new Lift {
+                    ID = i,
+                    Active = true,
+                    CurrentFloor = instanceCurrentFloor,
+                    Direction = Utilities.DirectionSelector(instanceCurrentFloor, floors),
+                    MaxFloor = floors,
+                    MaxWeightKG = 700
+                });
             }
+            //TODO: Add max floor logic
+            //allLifts[lifts-1].MaxFloor = floors > 3 && lifts > 2 ? floors-3 : floors-1;
             return allLifts;
         }
 
-        public static String[][] LinkLifts(List<Lift> allLifts, String[][] buildingStructure, int lifts, int floors)
+        public static String[][] LinkLifts(List<Lift> allLifts, String[][] buildingStructure, int floors, int lifts)
         {
             //Displays directions of lifts
             for (int i = 0; i < lifts; i++)
@@ -64,24 +65,6 @@ namespace ElevatorManager
             return buildingStructure;
         }
 
-        public static int DirectionSelector(int currentFloor, int floors)
-        {
-            //Ensure lifts do not go through the ceiling/floor
-            Random rnd = new Random();
-            int direction = 0;
-            if (currentFloor == 0)
-            {
-                direction = 1;
-            }
-            else if (currentFloor == floors)
-            {
-                direction = 0;
-            }
-            else
-            {
-                direction = rnd.Next(0, 2);
-            }
-            return direction;
-        }
+        
     }
 }
