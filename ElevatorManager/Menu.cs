@@ -26,27 +26,30 @@ namespace ElevatorManager
             Console.WriteLine();
         }
 
-        public static void Action()
+        public static int Action()
         {
             String menuPrompt = "Enter selection: ";
             int menuChoice = Utilities.GetMenuInput(menuPrompt);
+            return menuChoice;           
+        }
 
-            switch (menuChoice)
+        //Call elevator
+
+        public static void Status(List<Lift> allLifts)
+        {
+            foreach (var liftInstance in allLifts)
             {
-                //TODO: create methods and replace cw
-                case 1:
-                    Console.WriteLine("Chosen call elevator");
-                    break;
-                case 2:
-                    Console.WriteLine("Chosen status");
-                    break;
-                case 3:
-                    Console.WriteLine("Chosen Maintainence Mode");
-                    break;
-                case 4:
-                    Console.WriteLine("Chosen to exit");
-                    break;
+                String direction = liftInstance.Direction == 1 ? "Up" : "Down";
+
+                Console.WriteLine("Lift: "+liftInstance.ID);
+                Console.WriteLine("Active: "+liftInstance.Active);
+                Console.WriteLine("Current Floor: "+liftInstance.CurrentFloor);
+                Console.WriteLine("Direction: "+direction);
+                Console.WriteLine("Max Floor: "+liftInstance.MaxFloor);
+                Console.WriteLine();
             }
         }
+
+        //Maintainence mode
     }
 }
