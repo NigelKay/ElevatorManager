@@ -11,10 +11,11 @@ namespace ElevatorManager
 
         static void Main(string[] args)
         {
+            //Initial input
             Console.WriteLine("Welcome to Gilmond HQ!");
             int floors = Setup.Floors();
             int lifts = Setup.Lifts();
-            Console.WriteLine();
+            Console.Clear();
 
             //Initialise Building
             String[][] buildingStructure = new string[floors][];
@@ -25,6 +26,8 @@ namespace ElevatorManager
             buildingStructure = Lift.LinkLifts(allLifts, buildingStructure, floors, lifts);
             Building.Display(buildingStructure, floors, lifts);
 
+            Console.WriteLine();
+            Menu.Display();
 
 
 
@@ -34,10 +37,6 @@ namespace ElevatorManager
 
 
 
-
-
-
-            
 
 
 

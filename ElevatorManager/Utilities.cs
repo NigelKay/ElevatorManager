@@ -37,25 +37,5 @@ namespace ElevatorManager
             }
             return choice;
         }
-
-        public static int DirectionSelector(int currentFloor, int floors)
-        {
-            //Ensure lifts do not go through the ceiling/floor
-            Random rnd = new Random();
-            int direction = 0;
-            if (currentFloor == 0)
-            {
-                direction = 1;
-            }
-            else if (currentFloor == floors - 1)
-            {
-                direction = 0;
-            }
-            else
-            {
-                direction = rnd.Next(0, 2);
-            }
-            return direction;
-        }
     }
 }

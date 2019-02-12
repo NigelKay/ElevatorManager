@@ -28,7 +28,7 @@ namespace ElevatorManager
                     ID = i,
                     Active = true,
                     CurrentFloor = instanceCurrentFloor,
-                    Direction = Utilities.DirectionSelector(instanceCurrentFloor, floors),
+                    Direction = instanceCurrentFloor == 0 ? 1 : instanceCurrentFloor == floors-1 ? 0 : rnd.Next(0, 2),
                     MaxFloor = floors,
                     MaxWeightKG = 700
                 });
@@ -53,18 +53,16 @@ namespace ElevatorManager
              where a.ID == i
              select a.Direction).First();
 
-                if (direction == 1)
-                {
-                    buildingStructure[floor][i] = "[^] ";
-                }
-                else
+                if (direction == 0)
                 {
                     buildingStructure[floor][i] = "[v] ";
+                }
+                else if (direction == 1)
+                {   
+                    buildingStructure[floor][i] = "[^] ";
                 }
             }
             return buildingStructure;
         }
-
-        
     }
 }

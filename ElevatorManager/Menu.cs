@@ -15,5 +15,14 @@ namespace ElevatorManager
          * 4.
          * 5. Exit
          */
+
+        public static void Display()
+        {
+            Console.WriteLine("--Menu--");
+            Console.WriteLine("1. Call elevator");
+            Console.WriteLine("2. System Status");
+            Console.WriteLine("3. Maintainence mode");
+            Console.WriteLine("4. Exit");
+        }
     }
 }
