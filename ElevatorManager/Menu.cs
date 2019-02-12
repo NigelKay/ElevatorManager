@@ -23,6 +23,30 @@ namespace ElevatorManager
             Console.WriteLine("2. System Status");
             Console.WriteLine("3. Maintainence mode");
             Console.WriteLine("4. Exit");
+            Console.WriteLine();
+        }
+
+        public static void Action()
+        {
+            String menuPrompt = "Enter selection: ";
+            int menuChoice = Utilities.GetMenuInput(menuPrompt);
+
+            switch (menuChoice)
+            {
+                //TODO: create methods and replace cw
+                case 1:
+                    Console.WriteLine("Chosen call elevator");
+                    break;
+                case 2:
+                    Console.WriteLine("Chosen status");
+                    break;
+                case 3:
+                    Console.WriteLine("Chosen Maintainence Mode");
+                    break;
+                case 4:
+                    Console.WriteLine("Chosen to exit");
+                    break;
+            }
         }
     }
 }

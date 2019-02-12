@@ -23,8 +23,10 @@ namespace ElevatorManager
             List<Lift> allLifts = new List<Lift>();
             for (int i = 0; i < lifts; i++)
             {
+                //Instance variables to control max floor and direction
                 int instanceMaxFloor = Utilities.MaxFloorSelector(i, floors, lifts);
                 int instanceCurrentFloor = rnd.Next(0, instanceMaxFloor);
+                //Create values for each Lift
                 allLifts.Add(new Lift {
                     ID = i,
                     Active = true,
@@ -34,8 +36,6 @@ namespace ElevatorManager
                     MaxWeightKG = 700
                 });
             }
-            //TODO: Add max floor logic
-            //allLifts[lifts-1].MaxFloor = floors > 3 && lifts > 2 ? floors-3 : floors-1;
             return allLifts;
         }
 

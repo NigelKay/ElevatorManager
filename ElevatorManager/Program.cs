@@ -26,9 +26,16 @@ namespace ElevatorManager
             buildingStructure = Lift.LinkLifts(allLifts, buildingStructure, floors, lifts);
             Building.Display(buildingStructure, floors, lifts);
 
-            Console.WriteLine();
-            Menu.Display();
+            bool isWorkingDay = true;
 
+            while (isWorkingDay)
+            {
+                Console.WriteLine();
+                Menu.Display();
+                Menu.Action();
+            }
+
+            
 
 
 
