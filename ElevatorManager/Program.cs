@@ -39,7 +39,7 @@ namespace ElevatorManager
                 switch (menuChoice)
                 {                   
                     case 1:
-                        Console.WriteLine("Chosen call elevator");
+                        Menu.CallElevator(allLifts, 3, 5, floors);
                         //TODO: Create call lift method
                         break;
                     case 2:

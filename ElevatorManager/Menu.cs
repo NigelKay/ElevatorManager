@@ -33,7 +33,16 @@ namespace ElevatorManager
             return menuChoice;           
         }
 
+        public static void CallElevator(List<Lift> allLifts, int personCurrentFloor, int personCalledFloor, int totalFloors)
+        {
+            Lift.CalculateDistancesToCalledFloor(allLifts, personCurrentFloor, personCalledFloor, totalFloors);
+        }
+
         //Call elevator
+            //take input  (PERSON CURRENT FLOOR + DESIRED FLOOR)
+            //assign each instance with a distance to called floor
+            //LINQ to find smallest distance
+            //TODO: Utilities method to assign new values
 
         public static void Status(List<Lift> allLifts)
         {
@@ -45,6 +54,7 @@ namespace ElevatorManager
                 Console.WriteLine("Active: "+liftInstance.Active);
                 Console.WriteLine("Current Floor: "+liftInstance.CurrentFloor);
                 Console.WriteLine("Direction: "+direction);
+                Console.WriteLine("Distance to floor: "+liftInstance.DistanceToCalledFloor); //TODO: Remove when done testing
                 Console.WriteLine("Max Floor: "+liftInstance.MaxFloor);
                 Console.WriteLine();
             }

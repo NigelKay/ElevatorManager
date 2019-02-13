@@ -13,6 +13,7 @@ namespace ElevatorManager
         public int CurrentFloor { get; set; }
         public int Direction { get; set; }
         public int MaxFloor { get; set; }
+        public int DistanceToCalledFloor { get; set; }
         public int MaxWeightKG = 700;
 
 
@@ -31,8 +32,9 @@ namespace ElevatorManager
                     ID = i,
                     Active = true,
                     CurrentFloor = instanceCurrentFloor,
-                    Direction = instanceCurrentFloor == 0 ? 1 : instanceCurrentFloor == instanceMaxFloor-1 ? 0 : rnd.Next(0, 2),
+                    Direction = instanceCurrentFloor == 0 ? 1 : instanceCurrentFloor == instanceMaxFloor - 1 ? 0 : rnd.Next(0, 2),
                     MaxFloor = instanceMaxFloor,
+                    DistanceToCalledFloor = -999,
                     MaxWeightKG = 700
                 });
             }
@@ -64,6 +66,54 @@ namespace ElevatorManager
                 }
             }
             return buildingStructure;
+        }
+
+        public static void CalculateDistancesToCalledFloor(List<Lift> allLifts, int personCurrentFloor, int personCalledFloor, int totalFloors)
+        {
+            foreach (var lift in allLifts)
+            {
+                int personCalledDirection = personCurrentFloor - personCalledFloor > 0 ? 0 : 1;
+                bool movingSameDirection = lift.Direction == personCalledDirection;
+
+                if (movingSameDirection && lift.Direction == 1)
+                {
+                    if (personCurrentFloor > lift.CurrentFloor)
+                    {
+                        lift.DistanceToCalledFloor = Math.Abs(personCurrentFloor - lift.CurrentFloor);
+                    }
+                    else if (personCurrentFloor < lift.CurrentFloor)
+                    {
+                        lift.DistanceToCalledFloor = (Math.Abs(lift.CurrentFloor - (totalFloors - 1)) + (totalFloors - 1) + personCurrentFloor);
+                    }
+                    else if (personCurrentFloor == lift.CurrentFloor)
+                    {
+                        lift.DistanceToCalledFloor = 0;
+                    }
+                }
+                else if (movingSameDirection && lift.Direction == 0)
+                {
+                    if (personCurrentFloor < lift.CurrentFloor)
+                    {
+                        lift.DistanceToCalledFloor = Math.Abs(personCurrentFloor - lift.CurrentFloor);
+                    }
+                    else if (personCurrentFloor > lift.CurrentFloor)
+                    {
+                        lift.DistanceToCalledFloor = (lift.CurrentFloor + (totalFloors - 1) + Math.Abs((totalFloors - 1)  - personCurrentFloor));
+                    }
+                    else if (personCurrentFloor == lift.CurrentFloor)
+                    {
+                        lift.DistanceToCalledFloor = 0;
+                    }
+                }
+                else if (!movingSameDirection && lift.Direction == 1)
+                {
+                    lift.DistanceToCalledFloor = Math.Abs(lift.CurrentFloor - (totalFloors - 1)) + Math.Abs(personCurrentFloor - (totalFloors - 1));
+                }
+                else if (!movingSameDirection && lift.Direction == 0)
+                {
+                    lift.DistanceToCalledFloor = lift.CurrentFloor + personCurrentFloor;
+                }
+            }
         }
     }
 }
