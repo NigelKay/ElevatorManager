@@ -28,13 +28,14 @@ namespace ElevatorManager
 
         public static int Action()
         {
-            String menuPrompt = "Enter selection: ";
-            int menuChoice = Utilities.GetMenuInput(menuPrompt);
+            int menuChoice = UserInput.GetMenuInput();
             return menuChoice;           
         }
 
-        public static void CallElevator(List<Lift> allLifts, int personCurrentFloor, int personCalledFloor, int totalFloors)
+        public static void CallElevator(List<Lift> allLifts, int totalFloors)
         {
+            int personCurrentFloor = UserInput.CurrentFloorInput(totalFloors);
+            int personCalledFloor = UserInput.DesiredFloorInput(totalFloors);
             Lift.CalculateDistancesToCalledFloor(allLifts, personCurrentFloor, personCalledFloor, totalFloors);
         }
 

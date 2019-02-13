@@ -13,8 +13,8 @@ namespace ElevatorManager
         {
             //Initial input
             Console.WriteLine("Welcome to Gilmond HQ!");
-            int floors = Setup.Floors();
-            int lifts = Setup.Lifts();
+            int floors = UserInput.Floors();
+            int lifts = UserInput.Lifts();
             Console.Clear();
 
             //Initialise Building
@@ -39,7 +39,7 @@ namespace ElevatorManager
                 switch (menuChoice)
                 {                   
                     case 1:
-                        Menu.CallElevator(allLifts, 3, 5, floors);
+                        Menu.CallElevator(allLifts, floors);
                         //TODO: Create call lift method
                         break;
                     case 2:

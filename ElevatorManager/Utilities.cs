@@ -38,7 +38,7 @@ namespace ElevatorManager
             return choice;
         }
 
-        public static int GetMenuInput(string prompt)
+        public static int GetPositiveLimitedIntInput(string prompt, int limit)
         {
             int choice = 0;
             bool isValid = false;
@@ -47,10 +47,11 @@ namespace ElevatorManager
             {
                 Console.Write(prompt);
                 String input = Console.ReadLine();
+                input = input == "G" ? "0" : input;
                 var isNumeric = int.TryParse(input, out choice);
                 if (isNumeric)
                 {
-                    if (choice > 0 && choice < 5)
+                    if (choice > -1 && choice < (limit+1))
                     {
                         isValid = true;
                     }
