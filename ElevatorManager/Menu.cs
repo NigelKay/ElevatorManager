@@ -8,14 +8,6 @@ namespace ElevatorManager
 {
     class Menu
     {
-        /*
-         * 1. Call lift
-         * 2. Status
-         * 3. MaintainenceMode
-         * 4.
-         * 5. Exit
-         */
-
         public static void Display()
         {
             Console.WriteLine("--Menu--");
@@ -29,7 +21,7 @@ namespace ElevatorManager
         public static int Action()
         {
             int menuChoice = UserInput.GetMenuInput();
-            return menuChoice;           
+            return menuChoice;
         }
 
         public static void CallElevator(List<Lift> allLifts, int totalFloors)
@@ -37,13 +29,11 @@ namespace ElevatorManager
             int personCurrentFloor = UserInput.CurrentFloorInput(totalFloors);
             int personCalledFloor = UserInput.DesiredFloorInput(totalFloors);
             Lift.CalculateDistancesToCalledFloor(allLifts, personCurrentFloor, personCalledFloor, totalFloors);
-        }
-
-        //Call elevator
-            //take input  (PERSON CURRENT FLOOR + DESIRED FLOOR)
-            //assign each instance with a distance to called floor
             //LINQ to find smallest distance
             //TODO: Utilities method to assign new values
+            //TODO: Implement next lift moves
+            //TODO: Implement people in and out of lifts
+        }
 
         public static void Status(List<Lift> allLifts)
         {
@@ -51,7 +41,7 @@ namespace ElevatorManager
             {
                 String direction = liftInstance.Direction == 1 ? "Up" : "Down";
 
-                Console.WriteLine("Lift: "+liftInstance.ID);
+                Console.WriteLine("Lift: "+liftInstance.ID + 1);
                 Console.WriteLine("Active: "+liftInstance.Active);
                 Console.WriteLine("Current Floor: "+liftInstance.CurrentFloor);
                 Console.WriteLine("Direction: "+direction);
@@ -62,5 +52,10 @@ namespace ElevatorManager
         }
 
         //Maintainence mode
+        public static void MaintainenceMode(int totalLifts, List<Lift> allLifts)
+        {
+            int chosenLift = UserInput.SelectedLiftInput(totalLifts);
+            Utilities.SwitchMaintainenceMode(allLifts[chosenLift]);
+        }
     }
 }

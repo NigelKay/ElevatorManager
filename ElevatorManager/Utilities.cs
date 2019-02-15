@@ -47,7 +47,7 @@ namespace ElevatorManager
             {
                 Console.Write(prompt);
                 String input = Console.ReadLine();
-                input = input == "G" ? "0" : input;
+                input = input.ToUpper() == "G" ? "0" : input;
                 var isNumeric = int.TryParse(input, out choice);
                 if (isNumeric)
                 {
@@ -80,6 +80,16 @@ namespace ElevatorManager
             {
                 return totalFloors;
             }
+        }
+
+        public static void SetNewFloor(Lift liftInstance, int newFloorChoice)
+        {
+            liftInstance.CurrentFloor = newFloorChoice;
+        }
+
+        public static void SwitchMaintainenceMode(Lift liftInstance)
+        {
+            liftInstance.Active = liftInstance.Active ? false : true;
         }
     }
 }

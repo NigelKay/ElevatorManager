@@ -40,23 +40,21 @@ namespace ElevatorManager
                 {                   
                     case 1:
                         Menu.CallElevator(allLifts, floors);
-                        //TODO: Create call lift method
+                        //TODO: Clean cycle
                         break;
                     case 2:
                         Menu.Status(allLifts);
                         break;
                     case 3:
                         Console.WriteLine("Chosen Maintainence Mode");
-                        //TODO: Add maintainence mode
-                        //TODO: Add Utility method to take in floor numbers.
+                        Menu.MaintainenceMode(lifts, allLifts);
+                        //TODO: Add maintainence mode - CHECK IN LINQ
                         break;
                     case 4:                        
                         isWorkingDay = false;
                         break;
                 //TODO: readkey to continue, clear screen, reprint building
-                }
-            //TODO: Implement next lift moves
-            //TODO: Implement people in and out of lifts
+                }          
             }
             //Subtle subliminal messaging
             Console.WriteLine("Your working day is complete!\nAs you leave the building you say goodbye to your newest employee Nigel.");
