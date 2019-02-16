@@ -56,6 +56,14 @@ namespace ElevatorManager
         {
             int chosenLift = UserInput.SelectedLiftInput(totalLifts);
             Utilities.SwitchMaintainenceMode(allLifts[chosenLift]);
+            if (allLifts[chosenLift].Active)
+            {
+                Console.WriteLine("Lift {0} has returned to normal service.", chosenLift);
+            }
+            else
+            {
+                Console.WriteLine("Lift {0} has been set to maintainence mode.", chosenLift);
+            }
         }
     }
 }

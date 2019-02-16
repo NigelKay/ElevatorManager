@@ -46,15 +46,18 @@ namespace ElevatorManager
                         Menu.Status(allLifts);
                         break;
                     case 3:
-                        Console.WriteLine("Chosen Maintainence Mode");
+                        Console.WriteLine("Welcome to Maintainence Mode");
                         Menu.MaintainenceMode(lifts, allLifts);
-                        //TODO: Add maintainence mode - CHECK IN LINQ
                         break;
                     case 4:                        
                         isWorkingDay = false;
                         break;
                 //TODO: readkey to continue, clear screen, reprint building
-                }          
+                }
+                Console.Clear();
+                Lift.NaturalLiftMovement(allLifts, buildingStructure, floors);
+                buildingStructure = Lift.LinkLifts(allLifts, buildingStructure, floors, lifts);
+                Building.Display(buildingStructure, floors, lifts);
             }
             //Subtle subliminal messaging
             Console.WriteLine("Your working day is complete!\nAs you leave the building you say goodbye to your newest employee Nigel.");

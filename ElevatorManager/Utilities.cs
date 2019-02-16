@@ -91,5 +91,10 @@ namespace ElevatorManager
         {
             liftInstance.Active = liftInstance.Active ? false : true;
         }
+
+        public static int SwitchDirection(Lift liftInstance)
+        {
+            return liftInstance.Direction = liftInstance.Direction == 1 ? 0 : 1;
+        }
     }
 }

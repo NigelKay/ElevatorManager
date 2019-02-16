@@ -123,5 +123,29 @@ namespace ElevatorManager
                 
             }
         }
+
+        public static void NaturalLiftMovement(List<Lift> allLifts, String[][] buildingStructure, int totalFloors)
+        {
+            Random rnd = new Random();
+            foreach (var lift in allLifts)
+            {
+                if (lift.Active)
+                {
+                    if (lift.Direction == 1)
+                    {
+                        //Allow lift movement in same direction and clear old marker.
+                        buildingStructure[lift.CurrentFloor][lift.ID] = "[ ] ";
+                        lift.CurrentFloor = rnd.Next(lift.CurrentFloor, lift.MaxFloor);
+                    }
+                    else
+                    {
+                        buildingStructure[lift.CurrentFloor][lift.ID] = "[ ] ";
+                        lift.CurrentFloor = rnd.Next(0, lift.CurrentFloor);
+                    }
+                    //Switch direction if lift hits bottom/top floor
+                    lift.Direction = lift.CurrentFloor == 0 || lift.CurrentFloor == (totalFloors-1) ? Utilities.SwitchDirection(lift) : lift.Direction;
+                }
+            }
+        }
     }
 }
