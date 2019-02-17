@@ -57,7 +57,9 @@ namespace ElevatorManager
                     }
                     else
                     {
+                        Console.WriteLine();
                         Console.WriteLine("Please enter a valid number.");
+                        Console.WriteLine();
                         continue;
                     }
                 }
@@ -82,6 +84,14 @@ namespace ElevatorManager
             }
         }
 
+        public static int GetTempDirectionOverride(List<Lift> allLifts, int id)
+        {
+            int result = (from a in allLifts
+                          where a.ID == id
+                          select a.Direction).First();
+            return result;
+        }
+
         public static void SetNewFloor(Lift liftInstance, int newFloorChoice)
         {
             liftInstance.CurrentFloor = newFloorChoice;
@@ -100,14 +110,6 @@ namespace ElevatorManager
         public static int SwitchDirection(Lift liftInstance)
         {
             return liftInstance.Direction = liftInstance.Direction == 1 ? 0 : 1;
-        }
-
-        public static int GetTempDirectionOverride(List<Lift> allLifts, int id)
-        {
-            int result = (from a in allLifts
-                          where a.ID == id
-                          select a.Direction).First();
-            return result;
-        }
+        }        
     }
 }

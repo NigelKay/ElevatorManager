@@ -21,7 +21,7 @@ namespace ElevatorManager
             String[][] buildingStructure = new string[floors][];
             buildingStructure = Building.Construct(floors, lifts);         
 
-            //create list of Lift instances
+            //Create list of Lift instances
             List<Lift> allLifts = Lift.AllLiftsGenerator(floors, lifts);
             buildingStructure = Lift.LinkLifts(allLifts, buildingStructure, floors, lifts);
             Building.Display(buildingStructure, floors, lifts);
@@ -39,23 +39,26 @@ namespace ElevatorManager
                 switch (menuChoice)
                 {                   
                     case 1:
+                        //Call elevator
                         buildingStructure = Menu.CallElevator(allLifts, buildingStructure, floors, lifts);                       
-                        //TODO: Clean cycle
                         break;
                     case 2:
+                        //View status
                         Menu.Status(allLifts);
                         break;
                     case 3:
+                        //Maintainence mode
                         Console.WriteLine("Welcome to Maintainence Mode");
-                        Menu.MaintainenceMode(lifts, allLifts);
+                        buildingStructure = Menu.MaintainenceMode(buildingStructure, floors, lifts, allLifts);
                         break;
-                    case 4:                        
+                    case 4:
+                        //Exit programme
                         isWorkingDay = false;
                         break;
-                //TODO: readkey to continue, clear screen, reprint building
                 }
                 Console.Write("Press any key to continue.");
                 Console.ReadKey();
+                //Update display
                 Console.Clear();
                 buildingStructure = Lift.LinkLifts(allLifts, buildingStructure, floors, lifts);
                 Building.Display(buildingStructure, floors, lifts);

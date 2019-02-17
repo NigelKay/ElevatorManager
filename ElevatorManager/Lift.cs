@@ -118,7 +118,7 @@ namespace ElevatorManager
                 }
                 else
                 {
-                    lift.DistanceToCalledFloor = 999999;
+                    lift.DistanceToCalledFloor = 999999; //TODO: Fix logic
                 }
 
 
@@ -131,9 +131,9 @@ namespace ElevatorManager
                        where lift.DistanceToCalledFloor > 0
                        select lift.DistanceToCalledFloor).Min();
 
-            int floor = (from a in allLifts
-                         where a.DistanceToCalledFloor == min
-                         select a.ID).First();
+            int floor =(from a in allLifts
+                        where a.DistanceToCalledFloor == min
+                        select a.ID).First();
 
             return floor;
         }
@@ -153,6 +153,7 @@ namespace ElevatorManager
                     }
                     else
                     {
+                        //updates markers
                         buildingStructure[lift.CurrentFloor][lift.ID] = "[ ] ";
                         lift.CurrentFloor = rnd.Next(0, lift.CurrentFloor);
                     }
