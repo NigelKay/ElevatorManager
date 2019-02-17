@@ -34,7 +34,7 @@ namespace ElevatorManager
                     CurrentFloor = instanceCurrentFloor,
                     Direction = instanceCurrentFloor == 0 ? 1 : instanceCurrentFloor == instanceMaxFloor - 1 ? 0 : rnd.Next(0, 2),
                     MaxFloor = instanceMaxFloor,
-                    DistanceToCalledFloor = -999,
+                    DistanceToCalledFloor = 999,
                     MaxWeightKG = 700
                 });
             }
@@ -120,8 +120,22 @@ namespace ElevatorManager
                 {
                     lift.DistanceToCalledFloor = 999999;
                 }
-                
+
+
             }
+        }
+
+        public static int ChooseLift(List<Lift> allLifts)
+        {
+            int min = (from lift in allLifts
+                       where lift.DistanceToCalledFloor > 0
+                       select lift.DistanceToCalledFloor).Min();
+
+            int floor = (from a in allLifts
+                         where a.DistanceToCalledFloor == min
+                         select a.ID).First();
+
+            return floor;
         }
 
         public static void NaturalLiftMovement(List<Lift> allLifts, String[][] buildingStructure, int totalFloors)

@@ -87,6 +87,11 @@ namespace ElevatorManager
             liftInstance.CurrentFloor = newFloorChoice;
         }
 
+        public static void SetNewDirection(Lift liftInstance, int newDirection)
+        {
+            liftInstance.Direction = newDirection;
+        }
+
         public static void SwitchMaintainenceMode(Lift liftInstance)
         {
             liftInstance.Active = liftInstance.Active ? false : true;
@@ -95,6 +100,14 @@ namespace ElevatorManager
         public static int SwitchDirection(Lift liftInstance)
         {
             return liftInstance.Direction = liftInstance.Direction == 1 ? 0 : 1;
+        }
+
+        public static int GetTempDirectionOverride(List<Lift> allLifts, int id)
+        {
+            int result = (from a in allLifts
+                          where a.ID == id
+                          select a.Direction).First();
+            return result;
         }
     }
 }

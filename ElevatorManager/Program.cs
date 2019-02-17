@@ -39,7 +39,7 @@ namespace ElevatorManager
                 switch (menuChoice)
                 {                   
                     case 1:
-                        Menu.CallElevator(allLifts, floors);
+                        Menu.CallElevator(allLifts, buildingStructure, floors);
                         //TODO: Clean cycle
                         break;
                     case 2:
@@ -54,10 +54,10 @@ namespace ElevatorManager
                         break;
                 //TODO: readkey to continue, clear screen, reprint building
                 }
-                Console.Clear();
-                Lift.NaturalLiftMovement(allLifts, buildingStructure, floors);
                 buildingStructure = Lift.LinkLifts(allLifts, buildingStructure, floors, lifts);
                 Building.Display(buildingStructure, floors, lifts);
+                Console.Write("Press any key to continue.");
+                Console.ReadKey();
             }
             //Subtle subliminal messaging
             Console.WriteLine("Your working day is complete!\nAs you leave the building you say goodbye to your newest employee Nigel.");

@@ -24,16 +24,27 @@ namespace ElevatorManager
             return menuChoice;
         }
 
-        public static void CallElevator(List<Lift> allLifts, int totalFloors)
+        public static void CallElevator(List<Lift> allLifts, String[][] buildingStructure, int totalFloors)
         {
             int personCurrentFloor = UserInput.CurrentFloorInput(totalFloors);
             int personCalledFloor = UserInput.DesiredFloorInput(totalFloors);
+
             Lift.CalculateDistancesToCalledFloor(allLifts, personCurrentFloor, personCalledFloor, totalFloors);
-            //LINQ to find smallest distance
-            //TODO: Utilities method to assign new values
-            //TODO: Implement next lift moves
+            int closestLift = Lift.ChooseLift(allLifts);
+
+            int tempDirectionOverride = Utilities.GetTempDirectionOverride(allLifts, closestLift);
+
+            Lift.NaturalLiftMovement(allLifts, buildingStructure, totalFloors);
+            
+            buildingStructure[allLifts[closestLift].CurrentFloor][allLifts[closestLift].ID] = "[ ] ";
+            Utilities.SetNewDirection(allLifts[closestLift], tempDirectionOverride);
+            Utilities.SetNewFloor(allLifts[closestLift], personCalledFloor);
+            Console.WriteLine("You get in lift {0} and exit at floor {1}.", closestLift+1, personCalledFloor);
+
+
             //TODO: Implement people in and out of lifts
         }
+
 
         public static void Status(List<Lift> allLifts)
         {
@@ -54,6 +65,7 @@ namespace ElevatorManager
         //Maintainence mode
         public static void MaintainenceMode(int totalLifts, List<Lift> allLifts)
         {
+            //TODO: Add X's to void lifts.
             int chosenLift = UserInput.SelectedLiftInput(totalLifts);
             Utilities.SwitchMaintainenceMode(allLifts[chosenLift]);
             if (allLifts[chosenLift].Active)
