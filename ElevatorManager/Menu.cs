@@ -24,10 +24,12 @@ namespace ElevatorManager
             return menuChoice;
         }
 
-        public static void CallElevator(List<Lift> allLifts, String[][] buildingStructure, int totalFloors)
+        public static String[][] CallElevator(List<Lift> allLifts, String[][] buildingStructure, int totalFloors, int totalLifts)
         {
             int personCurrentFloor = UserInput.CurrentFloorInput(totalFloors);
             int personCalledFloor = UserInput.DesiredFloorInput(totalFloors);
+
+            Console.Clear();
 
             Lift.CalculateDistancesToCalledFloor(allLifts, personCurrentFloor, personCalledFloor, totalFloors);
             int closestLift = Lift.ChooseLift(allLifts);
@@ -38,10 +40,15 @@ namespace ElevatorManager
             
             buildingStructure[allLifts[closestLift].CurrentFloor][allLifts[closestLift].ID] = "[ ] ";
             Utilities.SetNewDirection(allLifts[closestLift], tempDirectionOverride);
-            Utilities.SetNewFloor(allLifts[closestLift], personCalledFloor);
-            Console.WriteLine("You get in lift {0} and exit at floor {1}.", closestLift+1, personCalledFloor);
+            Utilities.SetNewFloor(allLifts[closestLift], personCalledFloor);           
 
+            buildingStructure = Lift.LinkLifts(allLifts, buildingStructure, totalFloors, totalLifts);
+            Building.Display(buildingStructure, totalFloors, totalLifts);
 
+            Console.WriteLine();
+            Console.WriteLine("You get in lift {0} and exit at floor {1}.", closestLift + 1, personCalledFloor);
+
+            return buildingStructure;
             //TODO: Implement people in and out of lifts
         }
 
@@ -52,11 +59,10 @@ namespace ElevatorManager
             {
                 String direction = liftInstance.Direction == 1 ? "Up" : "Down";
 
-                Console.WriteLine("Lift: "+liftInstance.ID + 1);
+                Console.WriteLine("Lift: "+ (liftInstance.ID + 1));
                 Console.WriteLine("Active: "+liftInstance.Active);
                 Console.WriteLine("Current Floor: "+liftInstance.CurrentFloor);
                 Console.WriteLine("Direction: "+direction);
-                Console.WriteLine("Distance to floor: "+liftInstance.DistanceToCalledFloor); //TODO: Remove when done testing
                 Console.WriteLine("Max Floor: "+liftInstance.MaxFloor);
                 Console.WriteLine();
             }
