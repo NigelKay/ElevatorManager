@@ -97,7 +97,7 @@ namespace ElevatorManager
             Utilities.SwitchMaintainenceMode(allLifts[chosenLift]);
             if (!allLifts[chosenLift].Active)
             {               
-                Console.WriteLine("Lift {0} has been set to maintainence mode.", chosenLift);
+                Console.WriteLine("Lift {0} has been set to maintainence mode.", (chosenLift + 1));
                 //Fill maintainence mode lifts with X's
                 for (int i = 0; i < totalFloors; i++)
                 {
@@ -106,7 +106,7 @@ namespace ElevatorManager
             }
             else
             {
-                Console.WriteLine("Lift {0} has returned to normal service.", chosenLift);
+                Console.WriteLine("Lift {0} has returned to normal service.", (chosenLift + 1));
                 //clear maintainence mode X's
                 for (int i = 0; i < totalFloors; i++)
                 {

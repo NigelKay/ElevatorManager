@@ -40,11 +40,18 @@ namespace ElevatorManager
                 {                   
                     case 1:
                         //Call elevator
-                        buildingStructure = Menu.CallElevator(allLifts, buildingStructure, floors, lifts);                       
+                        try
+                        {
+                            buildingStructure = Menu.CallElevator(allLifts, buildingStructure, floors, lifts);
+                        }
+                        catch (InvalidOperationException)
+                        {
+                            Console.WriteLine("No lifts available, please wait for one to become available.");
+                        }
                         break;
                     case 2:
                         //View status
-                        Menu.Status(allLifts);
+                        Menu.Status(allLifts);                     
                         break;
                     case 3:
                         //Maintainence mode

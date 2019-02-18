@@ -13,7 +13,7 @@ namespace ElevatorManager
         public int CurrentFloor { get; set; }
         public int Direction { get; set; }
         public int MaxFloor { get; set; }
-        public int DistanceToCalledFloor { get; set; }
+        public int? DistanceToCalledFloor { get; set; }
         public int MaxWeightKG = 700;
 
 
@@ -34,7 +34,7 @@ namespace ElevatorManager
                     CurrentFloor = instanceCurrentFloor,
                     Direction = instanceCurrentFloor == 0 ? 1 : instanceCurrentFloor == instanceMaxFloor - 1 ? 0 : rnd.Next(0, 2),
                     MaxFloor = instanceMaxFloor,
-                    DistanceToCalledFloor = 999,
+                    DistanceToCalledFloor = null,
                     MaxWeightKG = 700
                 });
             }
@@ -118,7 +118,7 @@ namespace ElevatorManager
                 }
                 else
                 {
-                    lift.DistanceToCalledFloor = 999999; //TODO: Fix logic
+                    lift.DistanceToCalledFloor = null;
                 }
 
 
@@ -127,12 +127,12 @@ namespace ElevatorManager
 
         public static int ChooseLift(List<Lift> allLifts)
         {
-            int min = (from lift in allLifts
-                       where lift.DistanceToCalledFloor > 0
+            int? min = (from lift in allLifts
+                       where lift.DistanceToCalledFloor != null
                        select lift.DistanceToCalledFloor).Min();
 
             int floor =(from a in allLifts
-                        where a.DistanceToCalledFloor == min
+                        where a.DistanceToCalledFloor != null && a.DistanceToCalledFloor == min
                         select a.ID).First();
 
             return floor;
