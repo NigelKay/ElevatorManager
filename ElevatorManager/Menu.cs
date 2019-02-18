@@ -12,7 +12,7 @@ namespace ElevatorManager
         {
             Console.WriteLine("--Menu--");
             Console.WriteLine("1. Call elevator");
-            Console.WriteLine("2. System Status");
+            Console.WriteLine("2. System status");
             Console.WriteLine("3. Maintainence mode");
             Console.WriteLine("4. Exit");
             Console.WriteLine();
@@ -59,6 +59,7 @@ namespace ElevatorManager
             int tempDirectionOverride = Utilities.GetTempDirectionOverride(allLifts, closestLift);
 
             Lift.NaturalLiftMovement(allLifts, buildingStructure, totalFloors);
+            Lift.NaturalPeopleMovement(allLifts);
             
             //Set floor and direction from user action and adjust markers
             buildingStructure[allLifts[closestLift].CurrentFloor][allLifts[closestLift].ID] = "[ ] ";
@@ -80,12 +81,14 @@ namespace ElevatorManager
             foreach (var liftInstance in allLifts)
             {
                 String direction = liftInstance.Direction == 1 ? "Up" : "Down";
+                String statusCurrentFloor = liftInstance.CurrentFloor == 0 ? "G" : liftInstance.CurrentFloor.ToString();
 
                 Console.WriteLine("Lift: "+ (liftInstance.ID + 1));
-                Console.WriteLine("Active: "+liftInstance.Active);
-                Console.WriteLine("Current Floor: "+liftInstance.CurrentFloor);
+                Console.WriteLine("Active: "+liftInstance.Active);               
+                Console.WriteLine("Current Floor: "+statusCurrentFloor);
                 Console.WriteLine("Direction: "+direction);
                 Console.WriteLine("Max Floor: "+liftInstance.MaxFloor);
+                Console.WriteLine("Current Weight: {0}Kg",liftInstance.CurrentWeightKG);
                 Console.WriteLine();
             }
         }

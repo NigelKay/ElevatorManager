@@ -14,6 +14,7 @@ namespace ElevatorManager
         public int Direction { get; set; }
         public int MaxFloor { get; set; }
         public int? DistanceToCalledFloor { get; set; }
+        public int CurrentWeightKG { get; set; }
         public int MaxWeightKG = 700;
 
 
@@ -35,6 +36,7 @@ namespace ElevatorManager
                     Direction = instanceCurrentFloor == 0 ? 1 : instanceCurrentFloor == instanceMaxFloor - 1 ? 0 : rnd.Next(0, 2),
                     MaxFloor = instanceMaxFloor,
                     DistanceToCalledFloor = null,
+                    CurrentWeightKG = (rnd.Next(11)) * 70,
                     MaxWeightKG = 700
                 });
             }
@@ -128,12 +130,12 @@ namespace ElevatorManager
         public static int ChooseLift(List<Lift> allLifts)
         {
             int? min = (from lift in allLifts
-                       where lift.DistanceToCalledFloor != null
+                       where lift.DistanceToCalledFloor != null && lift.CurrentWeightKG < lift.MaxWeightKG
                        select lift.DistanceToCalledFloor).Min();
 
-            int floor =(from a in allLifts
-                        where a.DistanceToCalledFloor != null && a.DistanceToCalledFloor == min
-                        select a.ID).First();
+            int floor =(from lift in allLifts
+                        where lift.DistanceToCalledFloor != null && lift.CurrentWeightKG < lift.MaxWeightKG && lift.DistanceToCalledFloor == min
+                        select lift.ID).First();
 
             return floor;
         }
@@ -160,6 +162,15 @@ namespace ElevatorManager
                     //Switch direction if lift hits bottom/top floor
                     lift.Direction = lift.CurrentFloor == 0 || lift.CurrentFloor == (totalFloors-1) ? Utilities.SwitchDirection(lift) : lift.Direction;
                 }
+            }
+        }
+
+        public static void NaturalPeopleMovement(List<Lift> allLifts)
+        {
+            Random rnd = new Random();
+            foreach (var lift in allLifts)
+            {
+                lift.CurrentWeightKG = (rnd.Next(11)) * 70;
             }
         }
     }

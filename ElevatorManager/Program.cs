@@ -63,6 +63,7 @@ namespace ElevatorManager
                         isWorkingDay = false;
                         break;
                 }
+                Console.WriteLine();
                 Console.Write("Press any key to continue.");
                 Console.ReadKey();
                 //Update display
