@@ -13,18 +13,18 @@ namespace ElevatorManager
         {
             //Initial input
             Console.WriteLine("Welcome to Gilmond HQ!");
-            int floors = UserInput.Floors();
-            int lifts = UserInput.Lifts();
+            int totalFloors = UserInput.Floors();
+            int totalLifts = UserInput.Lifts();
             Console.Clear();
 
             //Initialise Building
-            String[][] buildingStructure = new string[floors][];
-            buildingStructure = Building.Construct(floors, lifts);         
+            String[][] buildingStructure = new string[totalFloors][];
+            buildingStructure = Building.Construct(totalFloors, totalLifts);         
 
             //Create list of Lift instances
-            List<Lift> allLifts = Lift.AllLiftsGenerator(floors, lifts);
-            buildingStructure = Lift.LinkLifts(allLifts, buildingStructure, floors, lifts);
-            Building.Display(buildingStructure, floors, lifts);
+            List<Lift> allLifts = Lift.AllLiftsGenerator(totalFloors, totalLifts);
+            buildingStructure = Lift.LinkLifts(allLifts, buildingStructure, totalFloors, totalLifts);
+            Building.Display(buildingStructure, totalFloors, totalLifts);
 
             bool isWorkingDay = true;
 
@@ -42,7 +42,7 @@ namespace ElevatorManager
                         //Call elevator
                         try
                         {
-                            buildingStructure = Menu.CallElevator(allLifts, buildingStructure, floors, lifts);
+                            buildingStructure = Menu.CallElevator(allLifts, buildingStructure, totalFloors, totalLifts);
                         }
                         catch (InvalidOperationException)
                         {
@@ -56,7 +56,7 @@ namespace ElevatorManager
                     case 3:
                         //Maintainence mode
                         Console.WriteLine("Welcome to Maintainence Mode");
-                        buildingStructure = Menu.MaintainenceMode(buildingStructure, floors, lifts, allLifts);
+                        buildingStructure = Menu.MaintainenceMode(buildingStructure, totalFloors, totalLifts, allLifts);
                         break;
                     case 4:
                         //Exit programme
@@ -68,8 +68,8 @@ namespace ElevatorManager
                 Console.ReadKey();
                 //Update display
                 Console.Clear();
-                buildingStructure = Lift.LinkLifts(allLifts, buildingStructure, floors, lifts);
-                Building.Display(buildingStructure, floors, lifts);
+                buildingStructure = Lift.LinkLifts(allLifts, buildingStructure, totalFloors, totalLifts);
+                Building.Display(buildingStructure, totalFloors, totalLifts);
 
             }
             //Subtle subliminal messaging

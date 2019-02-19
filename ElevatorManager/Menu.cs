@@ -72,7 +72,6 @@ namespace ElevatorManager
             Console.WriteLine("You get in lift {0} and exit at floor {1}.", closestLift + 1, personCalledFloor);
 
             return buildingStructure;
-            //TODO: Implement people in and out of lifts
         }
 
         //View status
@@ -85,10 +84,10 @@ namespace ElevatorManager
 
                 Console.WriteLine("Lift: "+ (liftInstance.ID + 1));
                 Console.WriteLine("Active: "+liftInstance.Active);               
-                Console.WriteLine("Current Floor: "+statusCurrentFloor);
+                Console.WriteLine("Current floor: "+statusCurrentFloor);
                 Console.WriteLine("Direction: "+direction);
                 Console.WriteLine("Max Floor: "+liftInstance.MaxFloor);
-                Console.WriteLine("Current Weight: {0}Kg",liftInstance.CurrentWeightKG);
+                Console.WriteLine("Current weight in lift: {0}Kg / {1}Kg",liftInstance.CurrentWeightKG, liftInstance.MaxWeightKG);
                 Console.WriteLine();
             }
         }

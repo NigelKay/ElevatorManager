@@ -86,9 +86,9 @@ namespace ElevatorManager
 
         public static int GetTempDirectionOverride(List<Lift> allLifts, int id)
         {
-            int result = (from a in allLifts
-                          where a.ID == id
-                          select a.Direction).First();
+            int result = (from lift in allLifts
+                          where lift.ID == id
+                          select lift.Direction).First();
             return result;
         }
 
