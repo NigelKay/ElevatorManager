@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ElevatorManager
 {
-    class UserInput
+    static class UserInput
     {
         public static int Floors()
         {

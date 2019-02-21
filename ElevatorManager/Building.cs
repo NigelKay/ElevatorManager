@@ -7,17 +7,8 @@ using System.Threading.Tasks;
 namespace ElevatorManager
 {
 
-    class Building
+    static class Building
     {
-        public int TotalFloors { get; set; }
-        public int TotalLifts { get; set; }
-
-        public Building(int totalFloors, int totalLifts)
-        {
-            this.TotalFloors = totalFloors;
-            this.TotalLifts = totalLifts;
-        }
-
         public static String[][] Construct(int floors, int lifts)
         {
             //Builds the building based on user input
@@ -49,8 +40,6 @@ namespace ElevatorManager
                     }
                 }
             }
-
-
         }
     }
 }

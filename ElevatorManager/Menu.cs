@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ElevatorManager
 {
-    class Menu
+    static class Menu
     {
         public static void Display()
         {
