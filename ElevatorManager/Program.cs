@@ -59,7 +59,7 @@ namespace ElevatorManager
                         buildingStructure = Menu.MaintainenceMode(buildingStructure, totalFloors, totalLifts, allLifts);
                         break;
                     case 4:
-                        //Exit programme
+                        //Exit program
                         isWorkingDay = false;
                         break;
                 }
