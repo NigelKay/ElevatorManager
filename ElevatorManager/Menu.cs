@@ -69,7 +69,8 @@ namespace ElevatorManager
             Building.Display(buildingStructure, totalFloors, totalLifts);
 
             Console.WriteLine();
-            Console.WriteLine("You get in lift {0} and exit at floor {1}.", closestLift + 1, personCalledFloor);
+            String personCalledFloorConsole = personCalledFloor == 0 ? "G" : personCalledFloor.ToString();
+            Console.WriteLine("You get in lift {0} and exit at floor {1}.", closestLift + 1, personCalledFloorConsole);
 
             return buildingStructure;
         }
