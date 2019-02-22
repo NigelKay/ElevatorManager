@@ -25,7 +25,7 @@ namespace ElevatorManager
         public static int GetMenuInput()
         {
             String menuPrompt = "Enter selection: ";
-            int menuChoiceResult = Utilities.GetPositiveLimitedIntInput(menuPrompt, 4);
+            int menuChoiceResult = Utilities.GetPositiveIntInput(menuPrompt, 4);
             return menuChoiceResult;
         }
 
@@ -33,7 +33,7 @@ namespace ElevatorManager
         {
             String maxFloor = (totalFloors-1).ToString();
             String currentFloorInputPrompt = "Enter your current floor (G-"+maxFloor+"): ";
-            int currentFloorInputResult = Utilities.GetPositiveLimitedIntInput(currentFloorInputPrompt, (totalFloors-1));
+            int currentFloorInputResult = Utilities.GetPositiveIntInput(currentFloorInputPrompt, (totalFloors-1));
             return currentFloorInputResult;
         }
 
@@ -41,7 +41,7 @@ namespace ElevatorManager
         {
             String maxFloor = (totalFloors-1).ToString();
             String desiredFloorInputPrompt = "Enter which floor you'd like to go to (G-" + maxFloor + "): ";
-            int desiredFloorInputResult = Utilities.GetPositiveLimitedIntInput(desiredFloorInputPrompt, (totalFloors-1));
+            int desiredFloorInputResult = Utilities.GetPositiveIntInput(desiredFloorInputPrompt, (totalFloors-1));
             return desiredFloorInputResult;
         }
 
@@ -49,7 +49,7 @@ namespace ElevatorManager
         {
             String maxLift = totalLifts.ToString();
             String selectedLiftInputPrompt = "Please select a lift (1-" + maxLift + "): ";
-            int selectedLiftInputResult = Utilities.GetPositiveLimitedIntInput(selectedLiftInputPrompt, totalLifts);
+            int selectedLiftInputResult = Utilities.GetPositiveIntInput(selectedLiftInputPrompt, totalLifts);
             return selectedLiftInputResult - 1;
         }
     }

@@ -20,7 +20,7 @@ namespace ElevatorManager
                 var isNumeric = int.TryParse(input, out choice);
                 if (isNumeric)
                 {
-                    if (choice >= 0)
+                    if (choice > 0)
                     {
                         isInt = true;
                     }
@@ -38,7 +38,7 @@ namespace ElevatorManager
             return choice;
         }
 
-        public static int GetPositiveLimitedIntInput(string prompt, int limit)
+        public static int GetPositiveIntInput(string prompt, int limit)
         {
             int choice = 0;
             bool isValid = false;
