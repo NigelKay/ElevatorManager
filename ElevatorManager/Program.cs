@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,10 @@ namespace ElevatorManager
 
         static void Main(string[] args)
         {
+            //Timer
+            Stopwatch workTimer = new Stopwatch();
+            workTimer.Start();
+
             //Initial input
             Console.WriteLine("Welcome to Gilmond HQ!");
             int totalFloors = UserInput.Floors();
@@ -73,8 +78,10 @@ namespace ElevatorManager
 
             }
             //Subtle subliminal messaging
+            workTimer.Stop();
             Console.WriteLine();
-            Console.WriteLine("Your working day is complete!\nAs you leave the building you say goodbye to your newest employee Nigel.");
+            Console.WriteLine("Your working day is complete! You put in a whopping {0:hh\\:mm\\:ss} working day", workTimer.Elapsed);
+            Console.WriteLine("As you leave the building you say goodbye to your newest employee Nigel.");
             Console.ReadLine();
         }
     }
