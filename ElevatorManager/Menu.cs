@@ -78,6 +78,12 @@ namespace ElevatorManager
         //View status
         public static void Status(List<Lift> allLifts)
         {
+            var activeLifts = allLifts.Where(x => x.Active == true);
+            Console.WriteLine();
+            Console.Write("Active lifts: ");
+            Console.WriteLine(activeLifts.Count());
+            Console.WriteLine();
+
             foreach (var liftInstance in allLifts)
             {
                 String direction = liftInstance.Direction == 1 ? "Up" : "Down";

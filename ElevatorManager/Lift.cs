@@ -49,14 +49,14 @@ namespace ElevatorManager
             for (int i = 0; i < lifts; i++)
             {
                 int floor =
-            (from a in allLifts
-             where a.ID == i
-             select a.CurrentFloor).First();
+            (from lift in allLifts
+             where lift.ID == i
+             select lift.CurrentFloor).First();
 
                 int direction =
-            (from a in allLifts
-             where a.ID == i
-             select a.Direction).First();
+            (from lift in allLifts
+             where lift.ID == i
+             select lift.Direction).First();
 
                 if (direction == 0)
                 {
