@@ -52,20 +52,20 @@ namespace ElevatorManager
             Console.Clear();
 
             //Select best lift for action
-            Lift.CalculateDistancesToCalledFloor(allLifts, personCurrentFloor, personCalledFloor, totalFloors);
-            int closestLift = Lift.ChooseLift(allLifts);
+            LiftMethods.CalculateDistancesToCalledFloor(allLifts, personCurrentFloor, personCalledFloor, totalFloors);
+            int closestLift = LiftMethods.ChooseLift(allLifts);
 
             //Temp store direction to override natural movement.
             int tempDirectionOverride = Utilities.GetTempDirectionOverride(allLifts, closestLift);
 
-            Lift.NaturalLiftMovement(allLifts, buildingStructure, totalFloors);
-            Lift.NaturalPeopleMovement(allLifts);
+            LiftMethods.NaturalLiftMovement(allLifts, buildingStructure, totalFloors);
+            LiftMethods.NaturalPeopleMovement(allLifts);
             
             //Set floor and direction from user action and adjust markers
             buildingStructure[allLifts[closestLift].CurrentFloor][allLifts[closestLift].ID] = "[ ] ";
             Utilities.SetNewDirection(allLifts[closestLift], tempDirectionOverride);
             Utilities.SetNewFloor(allLifts[closestLift], personCalledFloor);           
-            buildingStructure = Lift.LinkLifts(allLifts, buildingStructure, totalFloors, totalLifts);
+            buildingStructure = LiftMethods.LinkLifts(allLifts, buildingStructure, totalFloors, totalLifts);
             Building.Display(buildingStructure, totalFloors, totalLifts);
 
             Console.WriteLine();

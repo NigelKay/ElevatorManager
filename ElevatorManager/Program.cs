@@ -27,8 +27,8 @@ namespace ElevatorManager
             buildingStructure = Building.Construct(totalFloors, totalLifts);         
 
             //Create list of Lift instances
-            List<Lift> allLifts = Lift.AllLiftsGenerator(totalFloors, totalLifts);
-            buildingStructure = Lift.LinkLifts(allLifts, buildingStructure, totalFloors, totalLifts);
+            List<Lift> allLifts = LiftMethods.AllLiftsGenerator(totalFloors, totalLifts);
+            buildingStructure = LiftMethods.LinkLifts(allLifts, buildingStructure, totalFloors, totalLifts);
             Building.Display(buildingStructure, totalFloors, totalLifts);
 
             bool isWorkingDay = true;
@@ -73,7 +73,7 @@ namespace ElevatorManager
                 Console.ReadKey();
                 //Update display
                 Console.Clear();
-                buildingStructure = Lift.LinkLifts(allLifts, buildingStructure, totalFloors, totalLifts);
+                buildingStructure = LiftMethods.LinkLifts(allLifts, buildingStructure, totalFloors, totalLifts);
                 Building.Display(buildingStructure, totalFloors, totalLifts);
 
             }

@@ -44,7 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Building.cs" />
+    <Compile Include="ILiftBuilder.cs" />
     <Compile Include="Lift.cs" />
+    <Compile Include="LiftBuilder.cs" />
+    <Compile Include="LiftMethods.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
