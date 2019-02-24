@@ -25,6 +25,7 @@ namespace ElevatorManager
                 LiftBuilder newLift = liftBuilder
                     .WithID(i)
                     .IsActive(true)
+                    .HasCurrentFloorOf(instanceCurrentFloor)
                     .HasDirectionOf(instanceCurrentFloor == 0 ? 1 : instanceCurrentFloor == instanceMaxFloor - 1 ? 0 : rnd.Next(0, 2))
                     .HasMaxFloorOf(instanceMaxFloor)
                     .DistanceToCalledFloor(null)
