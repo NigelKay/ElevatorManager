@@ -18,8 +18,8 @@ namespace ElevatorManager
                 //Instance variables to control max floor and direction
                 int instanceMaxFloor = Utilities.MaxFloorSelector(i, floors, lifts);
                 int instanceCurrentFloor = rnd.Next(0, instanceMaxFloor);
-                //Create values for each Lift
 
+                //Create values for each Lift
                 var liftBuilder = new LiftBuilder();
 
                 LiftBuilder newLift = liftBuilder
@@ -154,7 +154,7 @@ namespace ElevatorManager
                         lift.CurrentFloor = rnd.Next(0, lift.CurrentFloor);
                     }
                     //Switch direction if lift hits bottom/top floor
-                    lift.Direction = lift.CurrentFloor == 0 || lift.CurrentFloor == (totalFloors - 1) ? Utilities.SwitchDirection(lift) : lift.Direction;
+                    lift.Direction = lift.CurrentFloor == 0 || lift.CurrentFloor == (lift.MaxFloor - 1) ? Utilities.SwitchDirection(lift) : lift.Direction;
                 }
             }
         }
