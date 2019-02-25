@@ -17,9 +17,29 @@ namespace ElevatorManager
             workTimer.Start();
 
             //Initial input
-            Console.WriteLine("Welcome to Gilmond HQ!");
+            Console.WriteLine("Welcome to Gilmond HQ!\n");
+            String userName = UserInput.GetName();
             int totalFloors = UserInput.Floors();
             int totalLifts = UserInput.Lifts();
+            bool isEmployee = UserInput.IsEmployee();
+
+            //User greeting
+            if (isEmployee)
+            {
+                Employee user = new Employee(userName);
+                Console.WriteLine();
+                user.Greet();
+            }
+            else
+            {
+                Guest user = new Guest(userName);
+                Console.WriteLine();
+                user.Greet();
+            }
+
+            Console.WriteLine();
+            Console.Write("Press any key to continue.");
+            Console.ReadKey();
             Console.Clear();
 
             //Initialise Building
@@ -79,10 +99,21 @@ namespace ElevatorManager
             }
             //Subtle subliminal messaging
             workTimer.Stop();
-            Console.WriteLine();
-            Console.WriteLine("Your working day is complete! You put in a whopping {0:hh\\:mm\\:ss} working day.", workTimer.Elapsed);
-            Console.WriteLine();
-            Console.WriteLine("As you leave the building you say goodbye to your newest employee Nigel.");
+            var finalTimer = workTimer.Elapsed;
+
+            //User farewell
+            if (isEmployee)
+            {
+                Employee user = new Employee(userName);
+                Console.WriteLine();
+                user.Farewell(finalTimer);
+            }
+            else
+            {
+                Guest user = new Guest(userName);
+                Console.WriteLine();
+                user.Farewell(finalTimer);
+            }
             Console.ReadLine();
         }
     }

@@ -71,6 +71,31 @@ namespace ElevatorManager
             return choice;
         }
 
+        public static String GetName(String prompt)
+        {
+            String userName = String.Empty;
+
+            while (userName == String.Empty)
+            {
+                Console.Write(prompt);
+                userName = Console.ReadLine();
+            }
+            return userName;
+        }
+
+        public static bool GetEmployeeStatus(String prompt)
+        {
+            String userInput = String.Empty;
+
+            while (userInput.ToUpper() != "E" && userInput.ToUpper() != "G")
+            {
+                Console.Write(prompt);
+                userInput = Console.ReadLine();
+            }
+
+            return userInput.ToUpper() == "E";
+        }
+
         public static int MaxFloorSelector(int liftInstance, int totalFloors, int totalLifts)
         {
             //if building large enough, set last lift to have a maxfloor limit
@@ -110,6 +135,6 @@ namespace ElevatorManager
         public static int SwitchDirection(Lift liftInstance)
         {
             return liftInstance.Direction = liftInstance.Direction == 1 ? 0 : 1;
-        }        
+        }          
     }
 }

@@ -55,9 +55,14 @@ namespace ElevatorManager
 
         public static String GetName()
         {
-            Console.Write("Please enter your name: ");
-            String name = Console.ReadLine();
-            return name;
+            String getNamePrompt = "Please enter your name: ";
+            return Utilities.GetName(getNamePrompt);
+        }
+
+        public static bool IsEmployee()
+        {
+            String isEmployeePrompt = "Are you an employee or guest? (E/G): ";
+            return Utilities.GetEmployeeStatus(isEmployeePrompt);
         }
     }
 }

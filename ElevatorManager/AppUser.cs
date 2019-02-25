@@ -21,7 +21,7 @@ namespace ElevatorManager
             Console.WriteLine("You walk into the building");
         }
 
-        public virtual void Farewell(Stopwatch workTimer)
+        public virtual void Farewell(TimeSpan finalTimer)
         {
             Console.WriteLine("You exit the building");
         }
@@ -29,8 +29,6 @@ namespace ElevatorManager
 
     class Employee : AppUser
     {
-        private bool IsEmployee = true;
-
         public Employee(String name) : base(name)
         {
             this.Name = name;
@@ -38,19 +36,17 @@ namespace ElevatorManager
 
         public override void Greet()
         {
-            Console.WriteLine("Good morning {0}, You walk into the building via the staff entrance", Name);
+            Console.WriteLine("Good morning {0}, You walk into the building via the staff entrance.", Name);
         }
 
-        public override void Farewell(Stopwatch workTimer)
+        public override void Farewell(TimeSpan finalTimer)
         {
-            Console.WriteLine("Your working day is complete! You put in a whopping {0:hh\\:mm\\:ss} working day.\n\nAs you leave the building you say goodbye to your newest employee Nigel.", workTimer.Elapsed);
+            Console.WriteLine("Your working day is complete! You put in a whopping {0:hh\\:mm\\:ss} working day.\n\nAs you leave the building you say goodbye to your newest employee Nigel.", finalTimer);
         }
     }
 
     class Guest : AppUser
     {
-        private bool IsEmployee = false;
-
         public Guest(String name) : base(name)
         {
             this.Name = name;
@@ -58,12 +54,12 @@ namespace ElevatorManager
 
         public override void Greet()
         {
-            Console.WriteLine("Good morning {0}, You walk into the building via the guest entrance", Name);
+            Console.WriteLine("Good morning {0}, You walk into the building via the guest entrance.", Name);
         }
 
-        public override void Farewell(Stopwatch workTimer)
+        public override void Farewell(TimeSpan finalTimer)
         {
-            Console.WriteLine("Your visit lasted {0:hh\\:mm\\:ss}.\n\nAs you leave the building you say goodbye to a friendly employee called Nigel.", workTimer.Elapsed);
+            Console.WriteLine("Your visit lasted {0:hh\\:mm\\:ss}.\n\nAs you leave the building you say goodbye to a friendly employee called Nigel.", finalTimer);
         }
     }
 }
