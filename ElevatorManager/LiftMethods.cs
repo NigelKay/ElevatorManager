@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ElevatorManager
 {
-    class LiftMethods
+    static class LiftMethods
     {
         public static List<Lift> AllLiftsGenerator(int floors, int lifts)
         {
