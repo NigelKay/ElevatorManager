@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppUser.cs" />
     <Compile Include="Building.cs" />
     <Compile Include="ILiftBuilder.cs" />
     <Compile Include="Lift.cs" />

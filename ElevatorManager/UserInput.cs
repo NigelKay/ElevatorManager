@@ -52,5 +52,12 @@ namespace ElevatorManager
             int selectedLiftInputResult = Utilities.GetPositiveIntInput(selectedLiftInputPrompt, totalLifts);
             return selectedLiftInputResult - 1;
         }
+
+        public static String GetName()
+        {
+            Console.Write("Please enter your name: ");
+            String name = Console.ReadLine();
+            return name;
+        }
     }
 }
