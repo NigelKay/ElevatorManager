@@ -9,7 +9,6 @@ namespace ElevatorManager
 {
     class Program
     {
-
         static void Main(string[] args)
         {
             //Timer
