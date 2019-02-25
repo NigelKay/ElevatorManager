@@ -96,11 +96,10 @@ namespace ElevatorManager
                 Building.Display(buildingStructure, totalFloors, totalLifts);
 
             }
-            //Subtle subliminal messaging
             workTimer.Stop();
             var finalTimer = workTimer.Elapsed;
 
-            //User farewell
+            //User farewell && Subtle subliminal messaging
             if (isEmployee)
             {
                 Employee user = new Employee(userName);
