@@ -58,5 +58,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Building.tests\" />
+    <Folder Include="Lift.tests\" />
+    <Folder Include="Menu.tests\" />
+    <Folder Include="Tools.tests\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
